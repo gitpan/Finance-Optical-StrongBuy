@@ -160,7 +160,8 @@ sub callCheck  {
         
   }
 
-
+1;
+__DATA__
 # Preloaded methods go here.
 
 package main;
