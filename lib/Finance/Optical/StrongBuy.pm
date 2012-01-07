@@ -41,7 +41,7 @@ our $result = {};
 sub recommended {
     my $class = shift;
 
-    $class->new(14);
+    $class->new("/tmp");
 }
 
 sub new {
@@ -53,6 +53,8 @@ sub new {
     if( defined $dir ) {
         $this->set_path( $dir );
         $this->{result}=$result;
+    }else{
+        croak "need a working directory";
     }
 
     return $this;
@@ -62,7 +64,7 @@ sub set_path {
     my $this = shift;
     my $arg  = shift;
             
-    croak "days must be a positive non-zero integer" if !$arg;
+    croak "need a working directory" if !defined($arg);
 
 
     $this->{dir} = $arg;

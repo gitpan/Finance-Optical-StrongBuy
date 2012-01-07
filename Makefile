@@ -159,7 +159,7 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = 
+MAN3PODS = lib/Finance/Optical/CookBook.pod
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIB)$(DFSEP)Config.pm $(PERL_INC)$(DFSEP)config.h
@@ -181,9 +181,12 @@ PERL_ARCHIVE       =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/Finance/Optical/StrongBuy.pm
+TO_INST_PM = lib/Finance/Optical/CookBook.pod \
+	lib/Finance/Optical/StrongBuy.pm
 
-PM_TO_BLIB = lib/Finance/Optical/StrongBuy.pm \
+PM_TO_BLIB = lib/Finance/Optical/CookBook.pod \
+	blib/lib/Finance/Optical/CookBook.pod \
+	lib/Finance/Optical/StrongBuy.pm \
 	blib/lib/Finance/Optical/StrongBuy.pm
 
 
@@ -405,8 +408,10 @@ POD2MAN_EXE = $(PERLRUN) "-MExtUtils::Command::MM" -e pod2man "--"
 POD2MAN = $(POD2MAN_EXE)
 
 
-manifypods : pure_all 
-	$(NOECHO) $(NOOP)
+manifypods : pure_all  \
+	lib/Finance/Optical/CookBook.pod
+	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) \
+	  lib/Finance/Optical/CookBook.pod $(INST_MAN3DIR)/Finance::Optical::CookBook.$(MAN3EXT) 
 
 
 
@@ -782,6 +787,7 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
+	  lib/Finance/Optical/CookBook.pod blib/lib/Finance/Optical/CookBook.pod \
 	  lib/Finance/Optical/StrongBuy.pm blib/lib/Finance/Optical/StrongBuy.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
