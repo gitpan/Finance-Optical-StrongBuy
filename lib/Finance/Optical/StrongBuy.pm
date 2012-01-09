@@ -161,22 +161,55 @@ sub callCheck  {
             } 
         
   }
-
+  
 1;
-__DATA__
-# Preloaded methods go here.
+__END__
+# Below is stub documentation for your module. You'd better edit it!
 
-package main;
+=head1 NAME
+
+Finance::Optical::StrongBuy - analyses a image [strong-sell,sell,hold,buy,strong-buy] for given stock, released by Institutional Brokers Estimate System
+
+=head1 SYNOPSIS
+
+use Finance::Optical::StrongBuy;
 use Data::Dumper;
-use Test;
-BEGIN { plan tests => 42 }
 
 my $new = Finance::Optical::StrongBuy->new("/tmp");
-foreach my $symbol (qw/C BAC WFC WM F GE AAPL GOOG/){
-    $new->callCheck($symbol);
+
+foreach my $symbol (qw/C BAC WFC WM F GE AAPL GOOG/) {
+ $new->callCheck($symbol);
 }
 
-print Dumper $new;
+print Dumper [$new];
 
-ok(1); 
-1;
+=head1 DESCRIPTION
+
+analyses a image [strong-sell,sell,hold,buy,strong-buy] for given stock, released by Institutional Brokers Estimate System
+
+http://content.nasdaq.com/ibes/GOOG_Smallcon.jpg
+
+=head2 EXPORT
+
+None by default.
+
+=head1 SEE ALSO
+
+Finance::Google::Sector::Mean
+Finance::NASDAQ::Markets
+
+=head1 AUTHOR
+
+Hagen Geissler
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2012 by Hagen Geissler
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.12.4 or,
+at your option, any later version of Perl 5 you may have available.
+
+
+=cut
+
