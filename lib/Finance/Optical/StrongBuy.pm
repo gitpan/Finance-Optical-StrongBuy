@@ -172,16 +172,17 @@ Finance::Optical::StrongBuy - analyses a image [strong-sell,sell,hold,buy,strong
 
 =head1 SYNOPSIS
 
-use Finance::Optical::StrongBuy;
-use Data::Dumper;
 
-my $new = Finance::Optical::StrongBuy->new("/tmp");
+    use Finance::Optical::StrongBuy;
+    use Data::Dumper;
 
-foreach my $symbol (qw/C BAC WFC WM F GE AAPL GOOG/) {
- $new->callCheck($symbol);
-}
+    my $new = Finance::Optical::StrongBuy->new("/tmp");
 
-print Dumper [$new];
+    foreach my $symbol (qw/C BAC WFC WM F GE AAPL GOOG/) {
+     $new->callCheck($symbol);
+    }
+
+    print Dumper [$new];
 
 =head1 DESCRIPTION
 
