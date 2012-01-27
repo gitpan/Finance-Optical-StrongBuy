@@ -1,6 +1,5 @@
 package Finance::Optical::StrongBuy;
 
-use 5.012004;
 use strict;
 use warnings;
 use Carp;
@@ -31,7 +30,7 @@ our @EXPORT = qw(
 callCheck new recommended
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.08';
 
 our $img = "";
 
@@ -117,8 +116,8 @@ my $content = "";
 
    $content = $browser->content() unless($EXIT_CODE);
 
-
 return $content;
+
 }
 
 
@@ -130,8 +129,9 @@ sub callCheck  {
 
         my $raw = $this->get_source_image(sprintf("http://content.nasdaq.com/ibes/%s_Smallcon.jpg",$symbol));
 
+        my $l = length $raw;
 
-        next if($raw =~ m/404|Fail:400 Bad Request/);
+        return if($raw =~ m/404|Fail:400 Bad Request/ ||  $l == 0);
         
         $this->writeImg($raw,sprintf("%s/%s_Smallcon.jpg",$this->{dir},$symbol));
           croak("shit image") unless (defined $raw);
@@ -145,7 +145,7 @@ sub callCheck  {
                 
                 next if(!$img);
                 #
-                $myImage->copy($img,0,0,105,11,22,22);
+                $myImage->copy($img,0,0,105,11,10,10);
 
                 binmode STDOUT;
                 
