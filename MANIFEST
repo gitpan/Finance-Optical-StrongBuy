@@ -1,6 +1,9 @@
-Changes
-Makefile.PL
+LICENSE
 MANIFEST
+META.yml
+Makefile.PL
 README
-t/Finance-Optical-StrongBuy.t
+dist.ini
+lib/Finance/Optical/CookBook.pod
 lib/Finance/Optical/StrongBuy.pm
+t/Finance-Optical-StrongBuy.t
